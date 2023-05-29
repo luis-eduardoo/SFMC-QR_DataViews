@@ -73,6 +73,18 @@ SELECT DISTINCT
          CONVERT(CHAR(10), MAX(o.EventDate),103) >= CONVERT(CHAR(10),GETDATE()-90,120) -- Mudar o "-90" de acordo com a sua necessidade
 
 
--- USUÁRIOS QUE ESTÃO DESENGAJADOS EM ABERTURAS DURANTE UM TEMPO
+/*[BR] USUÁRIOS QUE NÃO ABRIRAM EM UM DETERMINADO PERÍODO PARA REPIQUE*/
+/*[US] USERS WHO HAVE NOT OPENED IN A GIVEN PERIOD FOR REPLAY*/
+
+SELECT
+    s.SubscriberKey,
+    d.[ContactKey]
+FROM
+    _Sent s
+INNER JOIN
+    [YOUR_DATA_EXTENSION] d ON s.SubscriberKey = d.[SubscriberKey]
+WHERE
+    CONVERT(VARCHAR(10), s.EventDate, 120) >= CONVERT(VARCHAR(10), GETDATE() -3, 120)
+AND NOT EXISTS (SELECT '' FROM _Open o WHERE s.SubscriberKey = o.SubscriberKey)
 
 
