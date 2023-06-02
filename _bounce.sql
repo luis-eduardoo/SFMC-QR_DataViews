@@ -116,3 +116,18 @@ LEFT JOIN
   AND s.SubscriberID = b.SubscriberID
 WHERE
   CONVERT(VARCHAR(10), b.EventDate, 120) >= CONVERT(VARCHAR(10), GETDATE() - 1, 120)
+  
+ /*Bounce Microsft*/
+ 
+ SELECT DISTINCT
+    SubscriberKey,
+    BounceCategory	
+FROM
+    _Bounce
+WHERE
+    (
+    SUBSTRING(SubscriberKey, CHARINDEX('@',SubscriberKey) + 1, LEN(SubscriberKey)) LIKE '%hotmail.com%' 
+    OR SUBSTRING(SubscriberKey, CHARINDEX('@',SubscriberKey) + 1, LEN(SubscriberKey))  LIKE '%outlook.com%'
+    OR SUBSTRING(SubscriberKey, CHARINDEX('@',SubscriberKey) + 1, LEN(SubscriberKey))  LIKE '%live%'
+    OR SUBSTRING(SubscriberKey, CHARINDEX('@',SubscriberKey) + 1, LEN(SubscriberKey))  LIKE '%msn%'
+    OR SUBSTRING(SubscriberKey, CHARINDEX('@',SubscriberKey) + 1, LEN(SubscriberKey))  LIKE '%windowslive%')
