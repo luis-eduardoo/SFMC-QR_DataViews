@@ -101,7 +101,7 @@ SELECT
     ELSE 0
   END) AS Desconhecido
 FROM
-  ent.EUC_BR_Contact de
+  [Your_Data_Extension] de
 LEFT JOIN
   _Subscribers sub
   ON de.contactid = sub.SubscriberKey
