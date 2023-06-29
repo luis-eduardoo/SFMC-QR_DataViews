@@ -70,7 +70,7 @@ SELECT DISTINCT
     GROUP BY
          o.SubscriberKey, s.EmailAddress
     HAVING
-         CONVERT(CHAR(10), MAX(o.EventDate),103) >= CONVERT(CHAR(10),GETDATE()-90,120) -- Mudar o "-90" de acordo com a sua necessidade
+         CONVERT(CHAR(10), MAX(o.EventDate),120) >= CONVERT(CHAR(10),GETDATE()-90,120) -- Mudar o "-90" de acordo com a sua necessidade
 
 
 /*[BR] USUÁRIOS QUE NÃO ABRIRAM EM UM DETERMINADO PERÍODO PARA REPIQUE*/
